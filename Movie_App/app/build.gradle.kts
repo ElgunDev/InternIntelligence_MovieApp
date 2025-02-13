@@ -2,10 +2,10 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-   // id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp")
     id("kotlin-kapt")
     id ("androidx.navigation.safeargs.kotlin")
-    //id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
     id("com.google.dagger.hilt.android")
 
 
@@ -52,6 +52,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation(libs.androidx.activity)
+    implementation(libs.play.services.cast.framework)
     val room_version = "2.6.1"
     val retrofit_version = "2.11.0"
     val lifecycle_version = "2.8.1"
