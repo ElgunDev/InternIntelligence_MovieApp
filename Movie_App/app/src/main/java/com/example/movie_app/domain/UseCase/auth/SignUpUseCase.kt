@@ -1,6 +1,6 @@
 package com.example.movie_app.domain.UseCase.auth
 
-import com.example.movie_app.data.auth.AuthRepositoryImpl
+import com.example.movie_app.data.network.auth.AuthRepositoryImpl
 import com.example.movie_app.domain.Network.auth.IAuthRepository
 import javax.inject.Inject
 

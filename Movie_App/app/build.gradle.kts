@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation(libs.androidx.activity)
     implementation(libs.play.services.cast.framework)
+    implementation(libs.play.services.maps)
     val room_version = "2.6.1"
     val retrofit_version = "2.11.0"
     val lifecycle_version = "2.8.1"

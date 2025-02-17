@@ -1,4 +1,4 @@
-package com.example.movie_app.data.auth
+package com.example.movie_app.data.network.auth
 
 import android.widget.Toast
 import com.bumptech.glide.load.engine.Resource

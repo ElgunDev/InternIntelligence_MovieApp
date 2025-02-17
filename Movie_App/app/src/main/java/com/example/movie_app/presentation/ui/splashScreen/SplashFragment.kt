@@ -11,12 +11,17 @@ import androidx.navigation.fragment.findNavController
 import com.example.movie_app.R
 import com.example.movie_app.databinding.FragmentSplashBinding
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class SplashFragment : Fragment() {
+class SplashFragment
+(): Fragment() {
     private lateinit var binding:FragmentSplashBinding
+    @Inject
+     lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,11 +37,20 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+       val isLogin = checkUserLogin()
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_startFragment)
+            if (isLogin) {
+                findNavController().navigate(R.id.action_splashFragment_to_startFragment)
+            }
+            else{
+                findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+            }
         },3000
         )
+    }
+
+    private fun checkUserLogin():Boolean{
+        return firebaseAuth.currentUser==null
     }
 
 
