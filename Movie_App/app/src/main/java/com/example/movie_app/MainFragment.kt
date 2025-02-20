@@ -38,6 +38,7 @@ class MainFragment : Fragment() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.homeFragment ->navController.navigate(R.id.homeFragment)
+                R.id.searchFragment->navController.navigate(R.id.searchFragment)
                 R.id.favoriteFragment-> navController.navigate(R.id.favoriteFragment)
                 R.id.profileFragment -> navController.navigate(R.id.profileFragment)
             }

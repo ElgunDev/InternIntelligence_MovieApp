@@ -7,6 +7,12 @@
       />
 
   <item
+      android:id="@+id/searchFragment"
+      android:title="Search"
+      android:icon="@drawable/search_fill0_wght400_grad0_opsz24"
+      />
+
+  <item
     android:id="@+id/favoriteFragment"
       android:title="Favorite"
       android:icon="@drawable/bookmark_24dp_e8eaed_fill0_wght400_grad0_opsz24"

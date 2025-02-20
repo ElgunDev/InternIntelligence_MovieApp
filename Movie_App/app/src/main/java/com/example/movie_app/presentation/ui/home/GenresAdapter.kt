@@ -6,23 +6,29 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.movie_app.data.network.models.Genre
+import com.example.movie_app.R
+import com.example.movie_app.data.network.models.genres.Genre
 import com.example.movie_app.databinding.ItemGenresBinding
 
-class GenresAdapter:RecyclerView.Adapter<GenresAdapter.GenresViewHolder>() {
+class GenresAdapter(
+    private val onItemClick:(Int)->Unit
+            ):RecyclerView.Adapter<GenresAdapter.GenresViewHolder>() {
 
     private val diffCallBack = object :DiffUtil.ItemCallback<Genre>(){
         override fun areItemsTheSame(oldItem: Genre, newItem: Genre): Boolean {
-            return newItem==oldItem
+            return oldItem==newItem
         }
 
         override fun areContentsTheSame(oldItem: Genre, newItem: Genre): Boolean {
-           return newItem==oldItem
+          return oldItem==newItem
         }
+
 
     }
 
     private val diffUtil = AsyncListDiffer(this,diffCallBack)
+
+    private var selectedPosition=0
 
 
 
@@ -37,12 +43,29 @@ class GenresAdapter:RecyclerView.Adapter<GenresAdapter.GenresViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: GenresViewHolder, position: Int) {
-        holder.bind(diffUtil.currentList[position])
+        val genre = diffUtil.currentList[position]
+        holder.bind(genre , position)
+        holder.itemView.setOnClickListener(){
+            val oldPosition = selectedPosition
+            selectedPosition = position
+            notifyItemChanged(oldPosition)
+            notifyItemChanged(selectedPosition)
+            onItemClick(position)
+        }
+
     }
 
     inner class GenresViewHolder(private val binding:ItemGenresBinding):ViewHolder(binding.root){
-        fun bind(genre: Genre){
+        fun bind(genre: Genre, position: Int){
               binding.txtGenres.text = genre.name
+            if (position==selectedPosition){
+                binding.txtGenres.setBackgroundResource(R.drawable.selected_category_bg)
+            }
+            else{
+                binding.txtGenres.setBackgroundResource(R.drawable.unselected_category_bg)
+            }
+
+
         }
     }
     fun submitList(list:List<Genre>){
