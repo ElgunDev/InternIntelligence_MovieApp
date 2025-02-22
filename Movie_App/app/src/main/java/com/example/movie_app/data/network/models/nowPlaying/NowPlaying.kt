@@ -1,8 +1,0 @@
-package com.example.movie_app.data.network.models.nowPlaying
-
-data class NowPlaying(
-    val id :Int,
-    val title:String,
-    val poster_path:String?,
-    val genre_ids: List<Int>
-)

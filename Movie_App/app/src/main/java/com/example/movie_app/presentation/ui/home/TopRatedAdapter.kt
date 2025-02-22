@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.example.movie_app.data.network.models.topRated.TopRated
+import com.example.movie_app.data.network.models.home.topRated.TopRated
 import com.example.movie_app.databinding.ItemMoviesBinding
 
-class TopRatedAdapter:RecyclerView.Adapter<TopRatedAdapter.TopRatedViewHolder>(){
+class TopRatedAdapter(
+    private val onClick:(TopRated)->Unit
+):RecyclerView.Adapter<TopRatedAdapter.TopRatedViewHolder>(){
 
     private val diffCallBack = object :DiffUtil.ItemCallback<TopRated>(){
         override fun areItemsTheSame(oldItem: TopRated, newItem: TopRated): Boolean {
@@ -43,6 +45,10 @@ class TopRatedAdapter:RecyclerView.Adapter<TopRatedAdapter.TopRatedViewHolder>()
             Glide.with(binding.root.context)
                 .load("https://image.tmdb.org/t/p/w500" +topRated.poster_path)
                 .into(binding.imgMovie)
+        binding.root.setOnClickListener(){
+            onClick(topRated)
+        }
+
         }
 
     }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.example.movie_app.data.network.models.moviesPoster.PosterResult
+import com.example.movie_app.data.network.models.home.moviesPoster.PosterResult
 import com.example.movie_app.databinding.ItemPostersBinding
 
 class PostersAdapter:RecyclerView.Adapter<PostersAdapter.PosterViewHolder>() {
@@ -38,7 +38,7 @@ class PostersAdapter:RecyclerView.Adapter<PostersAdapter.PosterViewHolder>() {
     }
 
     inner class PosterViewHolder(private val binding:ItemPostersBinding):ViewHolder(binding.root){
-        fun bind(poster:PosterResult){
+        fun bind(poster: PosterResult){
             Glide.with(binding.root.context)
                 .load("https://image.tmdb.org/t/p/w500" +poster.poster_path)
                 .into(binding.imgPoster)

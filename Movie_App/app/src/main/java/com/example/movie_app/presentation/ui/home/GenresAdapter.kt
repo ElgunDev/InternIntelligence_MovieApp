@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.movie_app.R
-import com.example.movie_app.data.network.models.genres.Genre
+import com.example.movie_app.data.network.models.home.genres.Genre
 import com.example.movie_app.databinding.ItemGenresBinding
 
 class GenresAdapter(

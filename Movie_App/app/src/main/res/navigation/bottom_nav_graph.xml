@@ -10,7 +10,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.movie_app.presentation.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailedFragment"
+            app:destination="@id/movieDetailedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.movie_app.presentation.ui.favorite.FavoriteFragment"
@@ -25,5 +29,18 @@
         android:id="@+id/searchFragment"
         android:name="com.example.movie_app.presentation.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieDetailedFragment"
+            app:destination="@id/movieDetailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailedFragment"
+        android:name="com.example.movie_app.presentation.ui.movieDetailed.MovieDetailedFragment"
+        android:label="fragment_movie_detailed"
+        tools:layout="@layout/fragment_movie_detailed">
+        <argument
+            android:name="movie_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

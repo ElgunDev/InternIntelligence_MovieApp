@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_app.R
 import com.example.movie_app.databinding.FragmentHomeBinding
@@ -129,7 +130,10 @@ class HomeFragment : Fragment() {
 
     }
     private fun setNowPlayingAdapter(){
-        nowPlayingAdapter = NowPlayingAdapter()
+        nowPlayingAdapter = NowPlayingAdapter(){selectedMovie->
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
+            findNavController().navigate(action)
+        }
         binding.rcyNowPlaying.adapter = nowPlayingAdapter
         binding.rcyNowPlaying.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
        homeVM.nowPlaying.observe(viewLifecycleOwner){
@@ -147,7 +151,10 @@ class HomeFragment : Fragment() {
 
 
     private fun setPopularAdapter(){
-        popularAdapter = PopularAdapter()
+        popularAdapter = PopularAdapter(){selectedMovie->
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
+            findNavController().navigate(action)
+        }
         binding.rcyPopular.adapter = popularAdapter
         binding.rcyPopular.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
         homeVM.popular.observe(viewLifecycleOwner){
@@ -156,7 +163,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setTopRatedAdapter(){
-        topRatedAdapter = TopRatedAdapter()
+        topRatedAdapter = TopRatedAdapter(){ selectedMovie->
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
+            findNavController().navigate(action)
+        }
         binding.rcyTopRated.adapter = topRatedAdapter
         binding.rcyTopRated.layoutManager =LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         homeVM.topRated.observe(viewLifecycleOwner){
@@ -165,12 +175,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUPComingAdapter(){
-        upComingAdapter= UpComingAdapter()
+        upComingAdapter= UpComingAdapter(){ selectedMovie->
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
+            findNavController().navigate(action)
+        }
         binding.rcyUpComing.adapter = upComingAdapter
         binding.rcyUpComing.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         homeVM.upComing.observe(viewLifecycleOwner){
             upComingAdapter.submitList(it)
         }
     }
+
+
 
 }

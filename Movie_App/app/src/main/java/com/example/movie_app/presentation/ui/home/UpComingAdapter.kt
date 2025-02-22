@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.example.movie_app.data.network.models.upComing.UpComing
+import com.example.movie_app.data.network.models.home.upComing.UpComing
 import com.example.movie_app.databinding.ItemMoviesBinding
 
-class UpComingAdapter:RecyclerView.Adapter<UpComingAdapter.UpComingViewHolder>() {
+class UpComingAdapter(
+    private val onClick:(UpComing)->Unit
+):RecyclerView.Adapter<UpComingAdapter.UpComingViewHolder>() {
 
     private val diffCallBack = object :DiffUtil.ItemCallback<UpComing>(){
         override fun areItemsTheSame(oldItem: UpComing, newItem: UpComing): Boolean {
@@ -44,6 +46,10 @@ class UpComingAdapter:RecyclerView.Adapter<UpComingAdapter.UpComingViewHolder>()
        Glide.with(binding.root.context)
            .load("https://image.tmdb.org/t/p/w500" +upComing.poster_path)
            .into(binding.imgMovie)
+
+       binding.root.setOnClickListener(){
+           onClick(upComing)
+       }
    }
     }
 

@@ -5,24 +5,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movie_app.data.network.models.topRated.TopRated
-import com.example.movie_app.data.network.models.genres.Genre
-import com.example.movie_app.data.network.models.moviesPoster.PosterResult
-import com.example.movie_app.data.network.models.nowPlaying.NowPlaying
-import com.example.movie_app.data.network.models.upComing.UpComing
-import com.example.movie_app.domain.UseCase.movies.GetGenresUseCase
-import com.example.movie_app.domain.UseCase.movies.GetNowPlayingUseCase
-import com.example.movie_app.domain.UseCase.movies.GetPopularUseCase
-import com.example.movie_app.domain.UseCase.movies.GetPosterUseCase
-import com.example.movie_app.domain.UseCase.movies.GetTopRatedUseCase
-import com.example.movie_app.domain.UseCase.movies.GetUpComingUseCase
+import com.example.movie_app.data.network.models.home.topRated.TopRated
+import com.example.movie_app.data.network.models.home.genres.Genre
+import com.example.movie_app.data.network.models.home.moviesPoster.PosterResult
+import com.example.movie_app.data.network.models.home.nowPlaying.NowPlaying
+import com.example.movie_app.data.network.models.home.upComing.UpComing
+import com.example.movie_app.domain.UseCase.movies.home.GetGenresUseCase
+import com.example.movie_app.domain.UseCase.movies.home.GetNowPlayingUseCase
+import com.example.movie_app.domain.UseCase.movies.home.GetPopularUseCase
+import com.example.movie_app.domain.UseCase.movies.home.GetPosterUseCase
+import com.example.movie_app.domain.UseCase.movies.home.GetTopRatedUseCase
+import com.example.movie_app.domain.UseCase.movies.home.GetUpComingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeVM @Inject constructor(
-    private val getGenresUseCase:GetGenresUseCase,
+    private val getGenresUseCase: GetGenresUseCase,
     private val getPosterUseCase: GetPosterUseCase,
     private val getNowPlayingUseCase: GetNowPlayingUseCase,
     private val getPopularUseCase: GetPopularUseCase,

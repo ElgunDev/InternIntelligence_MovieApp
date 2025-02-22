@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.example.movie_app.data.network.models.nowPlaying.NowPlaying
+import com.example.movie_app.data.network.models.home.nowPlaying.NowPlaying
 import com.example.movie_app.databinding.ItemMoviesBinding
 
-class NowPlayingAdapter:RecyclerView.Adapter<NowPlayingAdapter.NowPlayingViewHolder>( ){
+class NowPlayingAdapter(
+    private val onItemClick: (NowPlaying)->Unit
+):RecyclerView.Adapter<NowPlayingAdapter.NowPlayingViewHolder>( ){
 
     private val diffCallBack = object :DiffUtil.ItemCallback<NowPlaying>(){
         override fun areItemsTheSame(oldItem: NowPlaying, newItem: NowPlaying): Boolean {
@@ -35,6 +37,7 @@ class NowPlayingAdapter:RecyclerView.Adapter<NowPlayingAdapter.NowPlayingViewHol
 
     override fun onBindViewHolder(holder: NowPlayingViewHolder, position: Int) {
         holder.bind(diffUtil.currentList[position])
+
     }
 
     inner class NowPlayingViewHolder(private val binding:ItemMoviesBinding):ViewHolder(binding.root){
@@ -42,6 +45,10 @@ class NowPlayingAdapter:RecyclerView.Adapter<NowPlayingAdapter.NowPlayingViewHol
              Glide.with(binding.root.context)
                  .load("https://image.tmdb.org/t/p/w500" +nowPlaying.poster_path)
                  .into(binding.imgMovie)
+
+             binding.root.setOnClickListener(){
+                 onItemClick(nowPlaying)
+             }
          }
     }
 
