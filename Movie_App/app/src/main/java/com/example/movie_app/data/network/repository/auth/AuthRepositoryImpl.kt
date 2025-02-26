@@ -1,8 +1,8 @@
-package com.example.movie_app.data.network.auth
+package com.example.movie_app.data.network.repository.auth
 
 import android.widget.Toast
 import com.bumptech.glide.load.engine.Resource
-import com.example.movie_app.domain.Network.auth.IAuthRepository
+import com.example.movie_app.domain.Network.repository.auth.IAuthRepository
 import com.example.movie_app.presentation.utils.NetworkResource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -17,7 +17,8 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun signUp(
         name: String,
         email: String,
-        password: String
+        password: String,
+        profileImage:String?
     ): NetworkResource<FirebaseUser?> {
         return try {
             val result = firebaseAuth.createUserWithEmailAndPassword(email,password).await()
@@ -27,7 +28,8 @@ class AuthRepositoryImpl @Inject constructor(
                     "uid" to it.uid,
                     "name" to name,
                     "email" to email,
-                    "password" to password
+                    "password" to password,
+                    "profileImage" to profileImage
 
                 )
                 firestore.collection("users").document(it.uid).set(userMap).await()

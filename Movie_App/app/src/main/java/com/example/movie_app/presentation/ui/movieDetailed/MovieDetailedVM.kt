@@ -10,6 +10,7 @@ import com.example.movie_app.data.network.models.detailed.MovieDetail
 import com.example.movie_app.domain.UseCase.movies.detailed.GetCastUseCase
 import com.example.movie_app.domain.UseCase.movies.detailed.GetDetailedUseCase
 import com.example.movie_app.domain.UseCase.movies.detailed.GetVideosUseCase
+import com.example.movie_app.domain.UseCase.movies.favorite.AddToFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +19,8 @@ import javax.inject.Inject
 class MovieDetailedVM @Inject constructor(
     private val getDetailedUseCase: GetDetailedUseCase,
     private val getCastUseCase: GetCastUseCase,
-    private val getVideosUseCase: GetVideosUseCase
+    private val getVideosUseCase: GetVideosUseCase,
+    private val addToFavoriteUseCase: AddToFavoriteUseCase
 ):ViewModel() {
 
     private val _movieDetailed = MutableLiveData<MovieDetail>()
@@ -66,6 +68,12 @@ class MovieDetailedVM @Inject constructor(
             catch (e:Exception){
                 Log.e("MovieDetailedVM" , "Error fetching Trailer")
             }
+        }
+    }
+
+    fun saveToFavorites(movie:MovieDetail){
+        viewModelScope.launch {
+            addToFavoriteUseCase.invoke(movie)
         }
     }
 }

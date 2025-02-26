@@ -1,6 +1,6 @@
-package com.example.movie_app.data.network.models.search
+package com.example.movie_app.data.network.models.home.movies
 
-data class AllMovie(
+data class Movie(
     val id: Int,
     val title: String,
     val poster_path: String?,

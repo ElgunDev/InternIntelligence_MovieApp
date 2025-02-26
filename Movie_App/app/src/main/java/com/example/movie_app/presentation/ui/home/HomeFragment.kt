@@ -17,11 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
   private  lateinit var binding: FragmentHomeBinding
     private lateinit var genresAdapter: GenresAdapter
-    private lateinit var postersAdapter: PostersAdapter
-    private lateinit var nowPlayingAdapter: NowPlayingAdapter
-    private lateinit var popularAdapter: PopularAdapter
-    private lateinit var topRatedAdapter: TopRatedAdapter
-    private lateinit var upComingAdapter: UpComingAdapter
+        private lateinit var postersAdapter: PostersAdapter
+    private lateinit var nowPlayingAdapter: MovieAdapter
+    private lateinit var popularAdapter: MovieAdapter
+    private lateinit var topRatedAdapter: MovieAdapter
+    private lateinit var upComingAdapter: MovieAdapter
  private val homeVM :HomeVM by viewModels()
 
 
@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
         setPosterAdapter()
         setTopRatedAdapter()
         setUPComingAdapter()
+
         homeVM.fetchPosters()
         homeVM.fetchGenres()
         homeVM.fetchPopular()
@@ -66,27 +67,11 @@ class HomeFragment : Fragment() {
                     val filteredData = movies.filter {movie->
                         movie.genre_ids.contains(genre.id)
                     }
-                    if (filteredData.isEmpty()){
-                        binding.rcyNowPlaying.visibility = View.INVISIBLE
-                        binding.txtNull.visibility =View.VISIBLE
-                    }
-                    else{
-                        binding.rcyNowPlaying.visibility = View.VISIBLE
-                        binding.txtNull.visibility =View.INVISIBLE
-                    }
                     nowPlayingAdapter.submitList(filteredData)
                 }
                 homeVM.popular.observe(viewLifecycleOwner){movies->
                     val filteredPopular = movies.filter {movie->
                         movie.genre_ids.contains(genre.id)
-                    }
-                    if (filteredPopular.isEmpty()){
-                        binding.rcyPopular.visibility = View.INVISIBLE
-                        binding.txtNullPopular.visibility = View.VISIBLE
-                    }
-                    else{
-                        binding.rcyPopular.visibility = View.VISIBLE
-                        binding.txtNullPopular.visibility = View.INVISIBLE
                     }
                     popularAdapter.submitList(filteredPopular)
                 }
@@ -94,28 +79,11 @@ class HomeFragment : Fragment() {
                     val filteredTopRated = movies.filter {movie->
                         movie.genre_ids.contains(genre.id)
                     }
-
-                    if (filteredTopRated.isEmpty()){
-                        binding.rcyTopRated.visibility = View.INVISIBLE
-                        binding.txtNullTopRated.visibility= View.VISIBLE
-                    }
-                    else{
-                        binding.rcyTopRated.visibility = View.VISIBLE
-                        binding.txtNullTopRated.visibility= View.INVISIBLE
-                    }
                     topRatedAdapter.submitList(filteredTopRated)
                 }
                 homeVM.upComing.observe(viewLifecycleOwner){movies->
                     val filteredUpComing= movies.filter {movie->
                         movie.genre_ids.contains(genre.id)
-                    }
-                    if (filteredUpComing.isEmpty()){
-                        binding.rcyUpComing.visibility = View.INVISIBLE
-                        binding.txtNullUpComing.visibility = View.VISIBLE
-                    }
-                    else{
-                        binding.rcyUpComing.visibility = View.VISIBLE
-                        binding.txtNullUpComing.visibility = View.INVISIBLE
                     }
                     upComingAdapter.submitList(filteredUpComing)
                 }
@@ -130,7 +98,7 @@ class HomeFragment : Fragment() {
 
     }
     private fun setNowPlayingAdapter(){
-        nowPlayingAdapter = NowPlayingAdapter(){selectedMovie->
+        nowPlayingAdapter = MovieAdapter(){ selectedMovie->
             val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
             findNavController().navigate(action)
         }
@@ -141,7 +109,7 @@ class HomeFragment : Fragment() {
        }
     }
     private fun setPosterAdapter(){
-        postersAdapter=PostersAdapter()
+        postersAdapter= PostersAdapter()
         binding.movieViewPager.adapter=postersAdapter
         binding.dotsInteceptor.attachTo(binding.movieViewPager)
         homeVM.posters.observe(viewLifecycleOwner){
@@ -151,7 +119,7 @@ class HomeFragment : Fragment() {
 
 
     private fun setPopularAdapter(){
-        popularAdapter = PopularAdapter(){selectedMovie->
+        popularAdapter = MovieAdapter(){selectedMovie->
             val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
             findNavController().navigate(action)
         }
@@ -163,7 +131,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setTopRatedAdapter(){
-        topRatedAdapter = TopRatedAdapter(){ selectedMovie->
+        topRatedAdapter = MovieAdapter(){ selectedMovie->
             val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
             findNavController().navigate(action)
         }
@@ -175,7 +143,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUPComingAdapter(){
-        upComingAdapter= UpComingAdapter(){ selectedMovie->
+        upComingAdapter= MovieAdapter(){ selectedMovie->
             val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailedFragment(selectedMovie.id)
             findNavController().navigate(action)
         }

@@ -5,11 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movie_app.data.network.models.home.topRated.TopRated
 import com.example.movie_app.data.network.models.home.genres.Genre
-import com.example.movie_app.data.network.models.home.moviesPoster.PosterResult
-import com.example.movie_app.data.network.models.home.nowPlaying.NowPlaying
-import com.example.movie_app.data.network.models.home.upComing.UpComing
+import com.example.movie_app.data.network.models.home.movies.Movie
 import com.example.movie_app.domain.UseCase.movies.home.GetGenresUseCase
 import com.example.movie_app.domain.UseCase.movies.home.GetNowPlayingUseCase
 import com.example.movie_app.domain.UseCase.movies.home.GetPopularUseCase
@@ -34,24 +31,24 @@ class HomeVM @Inject constructor(
     val genres :LiveData<List<Genre>>
         get() = _genres
 
-    private val _posters = MutableLiveData<List<PosterResult>>()
-    val posters :LiveData<List<PosterResult>>
+    private val _posters = MutableLiveData<List<Movie>>()
+    val posters :LiveData<List<Movie>>
         get() = _posters
 
-    private val _nowPlaying = MutableLiveData<List<NowPlaying>>()
-    val nowPlaying : LiveData<List<NowPlaying>>
+    private val _nowPlaying = MutableLiveData<List<Movie>>()
+    val nowPlaying : LiveData<List<Movie>>
         get() = _nowPlaying
 
-    private val _popular = MutableLiveData<List<PosterResult>>()
-    val popular :LiveData<List<PosterResult>>
+    private val _popular = MutableLiveData<List<Movie>>()
+    val popular :LiveData<List<Movie>>
         get() = _popular
 
-    private val _topRated = MutableLiveData<List<TopRated>>()
-    val topRated :LiveData<List<TopRated>>
+    private val _topRated = MutableLiveData<List<Movie>>()
+    val topRated :LiveData<List<Movie>>
         get() = _topRated
 
-    private val _upComing = MutableLiveData<List<UpComing>>()
-    val upComing :LiveData<List<UpComing>>
+    private val _upComing = MutableLiveData<List<Movie>>()
+    val upComing :LiveData<List<Movie>>
         get() = _upComing
      fun fetchGenres(){
         viewModelScope.launch {

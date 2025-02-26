@@ -60,8 +60,14 @@ class MovieDetailedFragment : Fragment() {
         movieDetailedVM.movieDetailed.observe(viewLifecycleOwner){
              bindingMovieDetailed(it)
             backButton(it)
+            binding.btnDownload.setOnClickListener(){
+                movieDetailedVM.movieDetailed.value?.let {movie->
+                    movieDetailedVM.saveToFavorites(movie)
+                }
+            }
         }
     }
+
 
     private fun bindingMovieDetailed(movieDetail: MovieDetail){
         binding.apply {
@@ -92,7 +98,6 @@ class MovieDetailedFragment : Fragment() {
     }
 
     private fun loadYoutubePlayer(){
-
             movieDetailedVM.trailerKey.observe(viewLifecycleOwner) {
                 youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                     override fun onReady(youTubePlayer: YouTubePlayer) {

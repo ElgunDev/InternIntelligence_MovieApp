@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movie_app.data.network.models.search.AllMovie
+import com.example.movie_app.data.network.models.home.movies.Movie
+
 import com.example.movie_app.domain.UseCase.movies.search.GetAllMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,12 +16,12 @@ class SearchVM @Inject constructor(
     private val getAllMoviesUseCase: GetAllMoviesUseCase
 ):ViewModel() {
 
-    private val _allMovie = MutableLiveData<List<AllMovie>>()
-    val allMovie : MutableLiveData<List<AllMovie>>
+    private val _allMovie = MutableLiveData<List<Movie>>()
+    val allMovie : MutableLiveData<List<Movie>>
         get() = _allMovie
 
-    private val _filteredMovies = MutableLiveData<List<AllMovie>>()
-    val filteredMovies :MutableLiveData<List<AllMovie>>
+    private val _filteredMovies = MutableLiveData<List<Movie>>()
+    val filteredMovies :MutableLiveData<List<Movie>>
         get() = _filteredMovies
 
     fun fetchAllMovie(){

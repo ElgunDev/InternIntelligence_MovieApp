@@ -53,6 +53,7 @@ class SignUpFragment : Fragment() {
             val name = binding.edtFullName.text.toString().trim()
             val email = binding.edtEmail.text.toString().trim()
             val password = binding.edtPassword.text.toString().trim()
+            val profileImage = ""
 
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -66,7 +67,8 @@ class SignUpFragment : Fragment() {
                 return@setOnClickListener
             }
             showProgressBar(true)
-            signUpViewModel.signUp(name, email, password)
+
+            signUpViewModel.signUp(name, email, password ,profileImage)
 
         }
     }

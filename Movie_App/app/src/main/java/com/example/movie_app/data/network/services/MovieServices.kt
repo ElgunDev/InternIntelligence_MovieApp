@@ -3,12 +3,9 @@ package com.example.movie_app.data.network.services
 import com.example.movie_app.data.network.models.detailed.CastResponse
 import com.example.movie_app.data.network.models.detailed.MovieDetail
 import com.example.movie_app.data.network.models.detailed.VideoResponse
-import com.example.movie_app.data.network.models.home.topRated.TopRatedResponse
 import com.example.movie_app.data.network.models.home.genres.GenreResponse
-import com.example.movie_app.data.network.models.home.moviesPoster.PosterResponse
-import com.example.movie_app.data.network.models.home.nowPlaying.NowPlayingResponse
-import com.example.movie_app.data.network.models.home.upComing.UpComingResponse
-import com.example.movie_app.data.network.models.search.AllMoviesResponse
+import com.example.movie_app.data.network.models.home.movies.MovieResponse
+
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -23,37 +20,37 @@ interface MovieServices {
     suspend fun getPosters(
         @Query("page") page:Int =1,
         @Query("language") language: String ="en-US"
-    ): PosterResponse
+    ): MovieResponse
 
     @GET("movie/now_playing")
     suspend fun getNowPlaying(
       @Query("page") page:Int =1,
       @Query("language") language: String = "es-US"
-    ): NowPlayingResponse
+    ): MovieResponse
 
     @GET("movie/popular")
     suspend fun getPopular(
         @Query("page") page:Int =1,
         @Query("language") language: String ="en-US"
-    ): PosterResponse
+    ): MovieResponse
 
     @GET("movie/top_rated")
     suspend fun getTopRated(
         @Query("page") page:Int=1,
         @Query("language") language: String ="en-US"
-    ): TopRatedResponse
+    ): MovieResponse
 
     @GET("movie/upcoming")
     suspend fun getUpComing(
         @Query("page") page: Int=1,
         @Query("language") language: String="en-US"
-    ): UpComingResponse
+    ): MovieResponse
 
     @GET("movie/popular")
     suspend fun getAllMovies(
      @Query("page") page: Int=2,
      @Query("language")language: String= "en-US"
-    ):AllMoviesResponse
+    ):MovieResponse
 
 
     @GET("movie/{movie_id}")

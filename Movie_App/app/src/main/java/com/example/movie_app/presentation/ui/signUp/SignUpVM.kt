@@ -20,9 +20,9 @@ class SignUpVM @Inject constructor(
     val authState: LiveData<NetworkResource<FirebaseUser?>>
         get() = _authState
 
-    fun signUp(name:String,email:String , password:String){
+    fun signUp(name:String,email:String , password:String ,profileImage:String){
         viewModelScope.launch {
-            _authState.value = signUpUseCase.invoke(name, email, password)
+            _authState.value = signUpUseCase.invoke(name, email, password ,profileImage )
         }
     }
 }

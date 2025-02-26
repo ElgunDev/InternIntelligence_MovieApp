@@ -19,7 +19,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.movie_app.presentation.ui.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_movieDetailedFragment"
+            app:destination="@id/movieDetailedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.movie_app.presentation.ui.profile.ProfileFragment"
