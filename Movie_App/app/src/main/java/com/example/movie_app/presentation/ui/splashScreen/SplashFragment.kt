@@ -39,13 +39,12 @@ class SplashFragment
         super.onViewCreated(view, savedInstanceState)
        val isLogin = checkUserLogin()
         Handler(Looper.getMainLooper()).postDelayed({
-            if (isLogin) {
+//            if (isLogin) {
             findNavController().navigate(R.id.action_splashFragment_to_startFragment)
-            }
-            else {
-
-                findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
-            }
+//            }
+//            else {
+//                findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+//            }
         },3000
         )
     }

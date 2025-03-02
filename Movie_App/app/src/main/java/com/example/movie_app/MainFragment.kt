@@ -50,7 +50,10 @@ class MainFragment : Fragment() {
                 R.id.movieDetailedFragment -> {
                     binding.bottomNavigationView.visibility = View.GONE
                 }
-                else -> {
+                R.id.profilDetailedFragment-> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+                else->{
                     binding.bottomNavigationView.visibility = View.VISIBLE
                 }
             }

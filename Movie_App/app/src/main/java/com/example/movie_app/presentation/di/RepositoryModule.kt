@@ -2,8 +2,10 @@ package com.example.movie_app.presentation.di
 
 import com.example.movie_app.data.network.repository.auth.AuthRepositoryImpl
 import com.example.movie_app.data.network.repository.favorite.FavoriteImplRepository
+import com.example.movie_app.data.network.repository.profilDetail.ProfileInfoImplRepository
 import com.example.movie_app.domain.Network.repository.auth.IAuthRepository
 import com.example.movie_app.domain.Network.repository.favorite.IFavoriteRepository
+import com.example.movie_app.domain.Network.repository.profilDetail.IProfileInfoRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
@@ -26,5 +28,12 @@ object RepositoryModule {
     @Singleton
     fun provideFavoriteRepository(firebaseFirestore: FirebaseFirestore,firebaseAuth: FirebaseAuth):IFavoriteRepository{
         return FavoriteImplRepository(firebaseFirestore,firebaseAuth)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileInfoRepository(fireStore: FirebaseFirestore):IProfileInfoRepository{
+        return ProfileInfoImplRepository(fireStore)
+
     }
 }

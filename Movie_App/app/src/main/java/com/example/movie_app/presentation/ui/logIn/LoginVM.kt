@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movie_app.domain.Network.Model.User
 import com.example.movie_app.domain.UseCase.auth.SignInUseCase
 import com.example.movie_app.presentation.utils.NetworkResource
 import com.google.firebase.auth.FirebaseUser
@@ -16,8 +17,8 @@ class LoginVM @Inject constructor(
     private val signInUseCase: SignInUseCase
 
 ):ViewModel() {
-    private val _authState = MutableLiveData<NetworkResource<FirebaseUser?>>()
-    val authState: LiveData<NetworkResource<FirebaseUser?>>
+    private val _authState = MutableLiveData<NetworkResource<String>>()
+    val authState: LiveData<NetworkResource<String>>
         get() = _authState
 
     fun signIn(email:String , password:String){

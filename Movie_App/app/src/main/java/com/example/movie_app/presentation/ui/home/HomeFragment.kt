@@ -15,14 +15,14 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-  private  lateinit var binding: FragmentHomeBinding
+    private  lateinit var binding: FragmentHomeBinding
     private lateinit var genresAdapter: GenresAdapter
-        private lateinit var postersAdapter: PostersAdapter
+    private lateinit var postersAdapter: PostersAdapter
     private lateinit var nowPlayingAdapter: MovieAdapter
     private lateinit var popularAdapter: MovieAdapter
     private lateinit var topRatedAdapter: MovieAdapter
     private lateinit var upComingAdapter: MovieAdapter
- private val homeVM :HomeVM by viewModels()
+    private val homeVM :HomeVM by viewModels()
 
 
 
@@ -48,7 +48,6 @@ class HomeFragment : Fragment() {
         setPosterAdapter()
         setTopRatedAdapter()
         setUPComingAdapter()
-
         homeVM.fetchPosters()
         homeVM.fetchGenres()
         homeVM.fetchPopular()

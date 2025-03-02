@@ -50,13 +50,13 @@ class FavoriteFragment : Fragment() {
         binding.rcyFav.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL ,false)
         favoriteVM.favoriteMovie.observe(viewLifecycleOwner){
             if (it.isEmpty()){
-                binding.layoutMovie.visibility=View.GONE
+                binding.layoutMovie.visibility=View.INVISIBLE
                 binding.layoutNoMovie.visibility = View.VISIBLE
             }
             else {
                 favoriteAdapter.submitList(it)
                 binding.layoutMovie.visibility=View.VISIBLE
-                binding.layoutNoMovie.visibility = View.GONE
+                binding.layoutNoMovie.visibility = View.INVISIBLE
             }
         }
     }

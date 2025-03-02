@@ -1,6 +1,7 @@
 package com.example.movie_app.presentation.ui.logIn
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +66,7 @@ class LogInFragment : Fragment() {
                 }
                 is NetworkResource.Error->{
                     Toast.makeText(requireContext(),"SignIn Failed" , Toast.LENGTH_SHORT).show()
+                    Log.e("SignInError" ,"SignIn failed: ${result.message}")
                     showProgressBar(false)
                 }
                 is NetworkResource.Loading->{

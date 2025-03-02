@@ -31,7 +31,7 @@
                 <ImageView
                     android:id="@+id/img"
                     android:layout_width="match_parent"
-                    android:layout_height="370dp"
+                    android:layout_height="340dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +60,7 @@
                android:orientation="vertical"
                android:padding="20dp"
                android:layout_marginTop="15dp"
+
                >
                <TextView
                    android:id="@+id/txtDiscovery"
@@ -114,6 +115,7 @@
                    android:textColor="@color/white"
                    android:textStyle="bold"
                    android:textSize="15sp"
+
                    />
 
 

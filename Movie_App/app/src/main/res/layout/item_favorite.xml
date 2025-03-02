@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-           android:background="@color/light_main_color"
+           android:background="@color/favorite"
             >
 
             <ImageView
@@ -29,7 +29,7 @@
                 android:layout_height="150dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/e_image"
+                android:src="@drawable/e"
                 android:scaleType="fitXY"
                 />
             <ImageView
@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_margin="10dp"
                 android:src="@drawable/close_24dp_e8eaed_fill0_wght400_grad0_opsz24"
-                android:background="@color/light_main_color"
+                android:background="@color/favorite"
                 />
 
 
